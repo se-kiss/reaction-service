@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+import { CreateReactionArgs } from './reaction.dto';
 import { Reaction } from './reaction.schema';
 
 @Injectable()
@@ -9,4 +10,9 @@ export class ReactionService {
     @InjectModel(Reaction.name)
     private readonly reactionModel: Model<Reaction>,
   ) {}
+
+  async create(args: CreateReactionArgs): Promise<Reaction> {
+    const created = new this.reactionModel(args)
+    return await created.save()
+  }
 }

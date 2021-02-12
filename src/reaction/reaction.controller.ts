@@ -1,8 +1,9 @@
 import { Controller, NotFoundException } from '@nestjs/common';
 import { GrpcMethod, RpcException } from '@nestjs/microservices';
-import { CreateReactionArgs, ReactionId, UpdateReactionArgs, VoteArgs } from './reaction.dto';
+import { CreateReactionArgs, GetReactionsArgs, ReactionId, UpdateReactionArgs, VoteArgs } from './reaction.dto';
 import { ReactionService } from './reaction.service';
 import { status } from 'grpc';
+import { Reaction } from './reaction.schema';
 
 @Controller('reaction')
 export class ReactionController {
@@ -14,8 +15,15 @@ export class ReactionController {
   }
 
   @GrpcMethod('ReactionService', 'GetReactions')
-  async getReactions() {
-    return await this.reactionService.gets({})
+  async getReactions(args: GetReactionsArgs): Promise<{reactions: Reaction[]}> {
+    try {
+      return { reactions: await this.reactionService.gets(args) }
+    } catch (e) {
+      throw new RpcException({
+        code: status.INTERNAL,
+        message: e.message,
+      })
+    }
   }
 
   @GrpcMethod('ReactionService', 'DeleteReaction')

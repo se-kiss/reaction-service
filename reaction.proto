@@ -1,0 +1,48 @@
+syntax = "proto3";
+
+package reaction;
+
+service ReactionService {
+  rpc CreateReaction (CreateReactionArgs) returns (Reaction) {}
+  rpc GetReactions (GetReactionsArgs) returns (Reactions) {}
+  rpc DeleteReaction (ReactionId) returns (Reaction) {}
+  rpc UpVote (VoteArgs) returns (Reaction) {}
+  rpc DownVote (VoteArgs) returns (Reaction) {}
+}
+
+enum ReactionType {
+  COMMENT = 0;
+  POST = 1;
+}
+
+message ReactionId {
+  string _id = 1;
+}
+
+message VoteArgs {
+  string targetId = 1;
+  string userId = 2;
+}
+
+message GetReactionsArgs {
+  repeated string ids = 1;
+}
+
+message CreateReactionArgs {
+  repeated string upVote = 1;
+  repeated string downVote = 2;
+  ReactionType reactionType = 3;
+}
+
+message Reaction {
+  string _id = 1;
+  repeated string upVote = 2;
+  repeated string downVote = 3;
+  ReactionType reactionType = 4;
+  string _createdAt = 5;
+  string _updatedAt = 6;
+}
+
+message Reactions {
+  repeated Reaction reaction = 1;
+}

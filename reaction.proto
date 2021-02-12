@@ -44,5 +44,5 @@ message Reaction {
 }
 
 message Reactions {
-  repeated Reaction reaction = 1;
+  repeated Reaction reactions = 1;
 }

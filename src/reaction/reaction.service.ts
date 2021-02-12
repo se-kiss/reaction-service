@@ -1,6 +1,6 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
+import { Model, Types } from 'mongoose';
 import { CreateReactionArgs, GetReactionsArgs } from './reaction.dto';
 import { Reaction } from './reaction.schema';
 
@@ -20,5 +20,11 @@ export class ReactionService {
     const selected = this.reactionModel.find({});
     ids && selected.find({ _id: { $in: ids } });
     return await selected.exec();
+  }
+
+  async delete( _id: Types.ObjectId ): Promise<Reaction> {
+    const deleted = this.reactionModel.findByIdAndDelete(_id).exec()
+    if (!deleted) throw new NotFoundException()
+    return deleted
   }
 }

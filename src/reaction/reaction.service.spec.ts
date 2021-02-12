@@ -65,4 +65,12 @@ describe('ReactionService', () => {
     const selected = await service.gets({})
     expect(selected).toHaveLength(2)
   })
+
+  it('should delete reaction', async () => {
+    const reaction = await service.create({
+      reactionType: ReactionType.POST
+    });
+    await service.delete(reaction._id);
+    expect(await service.gets({ ids: [reaction._id] })).toHaveLength(0);
+  });
 });

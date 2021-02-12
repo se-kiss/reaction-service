@@ -5,7 +5,7 @@ import { clearDatebase } from '../../test/fixture/mongoose';
 import { Test, TestingModule } from '@nestjs/testing';
 import { ConfigModule } from '@nestjs/config';
 import { Model, Types } from 'mongoose';
-import { CreateReactionArgs } from './reaction.dto';
+import { CreateReactionArgs, UpdateReactionArgs } from './reaction.dto';
 import { NotFoundException } from '@nestjs/common';
 
 describe('ReactionService', () => {
@@ -66,10 +66,23 @@ describe('ReactionService', () => {
     expect(selected).toHaveLength(2)
   })
 
+  it('should update', async () => {
+    const reaction = await service.create({
+      reactionType: ReactionType.POST
+    })
+    const args: UpdateReactionArgs = {
+      _id: reaction._id,
+      upVote: [new Types.ObjectId],
+    }
+    const updated = await service.update(args)
+    expect(updated._id).toEqual(args._id)
+    expect(updated.upVote).toHaveLength(reaction.upVote.length + 1)
+  })
+
   it('should delete reaction', async () => {
     const reaction = await service.create({
       reactionType: ReactionType.POST
-    });
+    })
     await service.delete(reaction._id);
     expect(await service.gets({ ids: [reaction._id] })).toHaveLength(0);
   });

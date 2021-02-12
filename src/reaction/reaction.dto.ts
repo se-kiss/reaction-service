@@ -21,3 +21,14 @@ export class GetReactionsArgs {
   })
   ids?: Types.ObjectId[];
 }
+
+export class UpdateReactionArgs implements Partial<CreateReactionArgs> {
+  _id: Types.ObjectId
+  upVote?: Types.ObjectId[]
+  downVote?: Types.ObjectId[]
+}
+
+export class VoteArgs {
+  targetId: Types.ObjectId
+  userId: Types.ObjectId
+}

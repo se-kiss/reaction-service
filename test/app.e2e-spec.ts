@@ -91,4 +91,5 @@ describe('AppController (e2e)', () => {
     const selected = await service.getReactions({}).toPromise()
     console.log(selected)
   })
+
 });

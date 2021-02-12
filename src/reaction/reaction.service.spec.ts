@@ -46,4 +46,23 @@ describe('ReactionService', () => {
     const res = await service.create(mockReaction)
     expect(res).toMatchObject(mockReaction)
   })
+
+  it('should get reaction', async () => {
+    const mockReaction: CreateReactionArgs = {
+      upVote: [new Types.ObjectId],
+      downVote: [new Types.ObjectId],
+      reactionType: ReactionType.COMMENT
+    }
+    const created = await service.create(mockReaction)
+    const selected = await service.gets({ ids: created._id })
+    expect(selected[0]._id).toEqual(created._id);
+    expect(selected[0].upVote).toEqual(created.upVote);
+    expect(selected[0].downVote).toEqual(created.downVote);
+    expect(selected[0].reactionType).toEqual(created.reactionType);
+  });
+
+  it('should get all reaction', async () => {
+    const selected = await service.gets({})
+    expect(selected).toHaveLength(2)
+  })
 });

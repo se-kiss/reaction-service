@@ -599,7 +599,7 @@
     tslib "2.1.0"
     uuid "8.3.2"
 
-"@nestjs/microservices@^7.6.9":
+"@nestjs/microservices@^7.6.11":
   version "7.6.12"
   resolved "https://registry.yarnpkg.com/@nestjs/microservices/-/microservices-7.6.12.tgz#065d6774a75e893604982e7f9d219faccfbd0107"
   integrity sha512-kP8Qsrjid6g4PdT0D7i2YEEDeRwGKNroMcbwZrEZjLrXYVUxEhTdvlJ07S996EAKWz8Kclha/TYfSCw+Qwfl/g==
@@ -608,7 +608,7 @@
     json-socket "0.3.0"
     tslib "2.1.0"
 
-"@nestjs/mongoose@^7.2.2":
+"@nestjs/mongoose@^7.2.3":
   version "7.2.3"
   resolved "https://registry.yarnpkg.com/@nestjs/mongoose/-/mongoose-7.2.3.tgz#641d83388ceba94f1566abe8e78a4dd3bd62753f"
   integrity sha512-uUl6brwvNUN/ijzLi96fSDf07eC9m6Ms98+zjx3lZbaMAkZXhpBeGkM0DoMOawBgcEET7hEN1W8L+izrEqygNA==
@@ -1905,10 +1905,10 @@ cjs-module-lexer@^0.6.0:
   resolved "https://registry.yarnpkg.com/cjs-module-lexer/-/cjs-module-lexer-0.6.0.tgz#4186fcca0eae175970aee870b9fe2d6cf8d5655f"
   integrity sha512-uc2Vix1frTfnuzxxu1Hp4ktSvM3QaI4oXl4ZUqL1wjTu/BGki9TrCWoqLTg/drR1KwAEarXuRFCG2Svr1GxPFw==
 
-class-transformer@^0.3.2:
-  version "0.3.2"
-  resolved "https://registry.yarnpkg.com/class-transformer/-/class-transformer-0.3.2.tgz#779ef5f124784324b40f8e927c774bd96cdecd4b"
-  integrity sha512-9QY6QXBH/+Gt1C3HBmJCrgY6+EFpIa6aLjfDnlXFx0zQl/HjrCE7qoaI0srNrxpMIfsobCpgUdDG5JYtJOpVsw==
+class-transformer@^0.2.3:
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/class-transformer/-/class-transformer-0.2.3.tgz#598c92ca71dcca73f91ccb875d74a3847ccfa32d"
+  integrity sha512-qsP+0xoavpOlJHuYsQJsN58HXSl8Jvveo+T37rEvCEeRfMWoytAyR0Ua/YsFgpM6AZYZ/og2PJwArwzJl1aXtQ==
 
 class-utils@^0.3.5:
   version "0.3.6"
@@ -4614,7 +4614,7 @@ mongoose-legacy-pluralize@1.0.2:
   resolved "https://registry.yarnpkg.com/mongoose-legacy-pluralize/-/mongoose-legacy-pluralize-1.0.2.tgz#3ba9f91fa507b5186d399fb40854bff18fb563e4"
   integrity sha512-Yo/7qQU4/EyIS8YDFSeenIvXxZN+ld7YdV9LqFVQJzTLye8unujAWPZ4NWKfFA+RNjh+wvTWKY9Z3E5XM6ZZiQ==
 
-mongoose@^5.11.14:
+mongoose@^5.11.15:
   version "5.11.15"
   resolved "https://registry.yarnpkg.com/mongoose/-/mongoose-5.11.15.tgz#ee8ba751c83ee21f4b399aba7cb10276dd316320"
   integrity sha512-8T4bT6eCGB7MqCm40oVhnhT/1AyAdwe+y1rYUhdl3ljsks3BpYz8whZgcMkIoh6VoCCjipOXRqZqdk1UByvlYA==

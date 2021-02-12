@@ -3,6 +3,10 @@ import { IsArray, IsOptional } from 'class-validator';
 import { Types } from 'mongoose';
 import { Reaction, ReactionType } from './reaction.schema';
 
+export class ReactionId {
+  _id: Types.ObjectId
+}
+
 export class CreateReactionArgs implements Partial<Reaction> {
   upVote?: Types.ObjectId[]
 

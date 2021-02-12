@@ -16,16 +16,13 @@ export class Reaction extends Document {
   _createdAt: Date
   _updatedAt: Date
 
-  @Prop({ type: Types.ObjectId, required: true })
-  _id: Types.ObjectId
-
-  @Prop({type: Types.ObjectId})
+  @Prop({ type: Types.ObjectId , default: [] })
   upVote: Types.ObjectId[]
 
-  @Prop({type: Types.ObjectId})
+  @Prop({ type: Types.ObjectId, default: [] })
   downVote: Types.ObjectId[]
 
-  @Prop({type: ReactionType})
+  @Prop({ type: ReactionType, required: true })
   reactionType: ReactionType
 
 }

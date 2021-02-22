@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kiss-reaction
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kiss-reaction
+  template:
+    metadata:
+      labels:
+        app: kiss-reaction
+    spec:
+      containers:
+      - name: kiss-reaction
+        image: registry.gitlab.com/nestz671/kiss-container-registries/reaction:0.0.2
+        ports:
+        - containerPort: 5000
+        env:
+          - name: MONGODB_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: mongodb
+                key: mongodb-root-password
+          - name: MONGODB_URL
+            value: mongodb://root:$(MONGODB_PASSWORD)@mongodb:27017/kiss-reaction?authSource=admin
+        resources:
+          requests:
+            cpu: 10m
+            memory: 50Mi
+          limits:
+            cpu: 100m
+            memory: 100Mi
+      imagePullSecrets:
+        - name: gitlab-docker-registry
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kiss-reaction
+spec:
+  type: ClusterIP
+  selector:
+    app: kiss-reaction
+  ports:
+  - port: 5000
+    targetPort: 5000
+    protocol: TCP

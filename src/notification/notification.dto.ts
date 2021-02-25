@@ -8,11 +8,7 @@ export class NotificationId {
 }
 
 export class CreateNotificationArgs implements Partial<Notification> {
-  upVote?: Types.ObjectId[]
-
-  downVote?: Types.ObjectId[]
-
-  reactionType: NotificationType
+  notificationType: NotificationType
 }
 
 export class GetNotificationsArgs {
@@ -24,15 +20,4 @@ export class GetNotificationsArgs {
       : values.map(value => new Types.ObjectId(value));
   })
   ids?: Types.ObjectId[];
-}
-
-export class UpdateNotificationArgs implements Partial<CreateNotificationArgs> {
-  _id: Types.ObjectId
-  upVote?: Types.ObjectId[]
-  downVote?: Types.ObjectId[]
-}
-
-export class VoteArgs {
-  targetId: Types.ObjectId
-  userId: Types.ObjectId
 }

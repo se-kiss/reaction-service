@@ -31,7 +31,7 @@ export class SubscriptionService {
     const tempdata = await this.subscriptionModel.findOne(args._id)
     tempdata.follower.push(args.follower)
     tempdata.following.push(args.following)
-    const updated = await this.subscriptionModel.updateOne(
+    const updated = await this.subscriptionModel.findByIdAndUpdate(
       args._id,
       {
         following: tempdata.following,
@@ -45,7 +45,7 @@ export class SubscriptionService {
 
   async unfollowUpdate(_id: Types.ObjectId , data: Types.ObjectId[]): Promise<Subscription> {
     const tempdata = await this.subscriptionModel.findOne(_id)
-    const updated = await this.subscriptionModel.updateOne(
+    const updated = await this.subscriptionModel.findByIdAndUpdate(
       _id,
       {
         following: data,

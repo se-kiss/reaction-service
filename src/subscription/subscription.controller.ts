@@ -43,9 +43,8 @@ export class SubscriptionController {
   async unFollow({ _id }: SubscriptionId, targetId: Types.ObjectId) {
     try {
       const tempdata = await this.subscriptionService.get(_id)
-      const tempFollowing = tempdata.following
-      tempdata.following = tempdata.following.filter(tempFollowing => tempFollowing != targetId)
-      await this.subscriptionService.unfollowUpdate(_id,tempdata.following)
+      tempdata.following = tempdata.following.filter(value => value.toHexString() !== targetId.toHexString())
+      return await this.subscriptionService.unfollowUpdate(_id,tempdata.following)
       
     } catch (e) {
       if (e instanceof NotFoundException) {

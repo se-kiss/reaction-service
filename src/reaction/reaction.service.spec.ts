@@ -63,6 +63,7 @@ describe('ReactionService', () => {
 
   it('should get all reaction', async () => {
     const selected = await service.gets({})
+    console.log(selected)
     expect(selected).toHaveLength(2)
   })
 

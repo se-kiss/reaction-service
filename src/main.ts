@@ -16,8 +16,8 @@ async function bootstrap() {
       transport: Transport.GRPC,
       options: {
         url: '0.0.0.0:5000',
-        package: ['reaction','notification'],
-        protoPath: ['reaction.proto','notification.proto'],
+        package: ['reaction','notification','subscription'],
+        protoPath: ['reaction.proto','notification.proto','subscription.proto'],
       },
     }
   );

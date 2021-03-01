@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+package subscription;
+
+service SubscriptionService {
+  rpc CreateSubscription (CreateSubscriptionArgs) returns (Subscription) {}
+  rpc GetSubscriptions (GetSubscriptionsArgs) returns (Subscriptions) {}
+  rpc UpdateSubscription (UpdateSubscriptionArgs) returns (Subscription) {}
+  rpc unFollow (unFollowArgs) returns (Subscription) {}
+}
+
+message unFollowArgs {
+  string id = 1;
+  string targetId = 2;
+}
+
+message SubscriptionId {
+  string _id = 1;
+}
+
+message GetSubscriptionsArgs {
+  repeated string ids = 1;
+}
+
+message CreateSubscriptionArgs {
+  repeated string follower = 1;
+  repeated string following = 2;
+}
+
+message Subscription {
+  string _id = 1;
+  repeated string follower = 2;
+  repeated string following = 3;
+  string _createdAt = 4;
+  string _updatedAt = 5;
+}
+
+message Subscriptions {
+  repeated Subscription subscriptions = 1;
+}
+
+message UpdateSubscriptionArgs {
+  string _id = 1;
+  repeated string follower = 2;
+  repeated string following = 3;
+}

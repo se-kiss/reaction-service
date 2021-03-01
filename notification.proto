@@ -22,7 +22,7 @@ message GetNotificationsArgs {
 }
 
 message CreateNotificationArgs {
-  NotificationType notificationType = 3;
+  NotificationType notificationType = 1;
 }
 
 message Notification {
@@ -33,5 +33,5 @@ message Notification {
 }
 
 message Notifications {
-  repeated Reaction reactions = 1;
+  repeated Notification notifications = 1;
 }

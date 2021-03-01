@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+package notification;
+
+service NotificationService {
+  rpc CreateNotification (CreateNotificationArgs) returns (Notification) {}
+  rpc GetNotifications (GetNotificationsArgs) returns (Notifications) {}
+  rpc DeleteNotification (NotificationId) returns (Notification) {}
+}
+
+enum NotificationType {
+  COMMENT = 0;
+  POST = 1;
+}
+
+message NotificationId {
+  string _id = 1;
+}
+
+message GetNotificationsArgs {
+  repeated string ids = 1;
+}
+
+message CreateNotificationArgs {
+  NotificationType notificationType = 3;
+}
+
+message Notification {
+  string _id = 1;
+  NotificationType notificationType = 2;
+  string _createdAt = 3;
+  string _updatedAt = 4;
+}
+
+message Notifications {
+  repeated Reaction reactions = 1;
+}

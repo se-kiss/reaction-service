@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
+import { Document, Types } from 'mongoose';
 
 export enum NotificationType {
   COMMENT,
@@ -15,6 +15,9 @@ export enum NotificationType {
 export class Notification extends Document {
   _createdAt: Date
   _updatedAt: Date
+
+  @Prop({ type: Types.ObjectId, required: true })
+  userId: Types.ObjectId
 
   @Prop({ type: NotificationType, required: true })
   notificationType: NotificationType

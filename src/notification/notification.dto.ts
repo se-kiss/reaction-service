@@ -8,6 +8,7 @@ export class NotificationId {
 }
 
 export class CreateNotificationArgs implements Partial<Notification> {
+  userId: Types.ObjectId
   notificationType: NotificationType
 }
 

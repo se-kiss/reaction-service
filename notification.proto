@@ -22,14 +22,16 @@ message GetNotificationsArgs {
 }
 
 message CreateNotificationArgs {
-  NotificationType notificationType = 1;
+  string userId = 1;
+  NotificationType notificationType = 2;
 }
 
 message Notification {
   string _id = 1;
-  NotificationType notificationType = 2;
-  string _createdAt = 3;
-  string _updatedAt = 4;
+  string userId = 2;
+  NotificationType notificationType = 3;
+  string _createdAt = 4;
+  string _updatedAt = 5;
 }
 
 message Notifications {

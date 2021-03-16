@@ -18,7 +18,7 @@ export class NotificationService {
 
   async gets({ ids }: GetNotificationsArgs): Promise<Notification[]> {
     const selected = this.notificationModel.find({});
-    ids && selected.find({ _id: { $in: ids } });
+    ids && selected.find({ userId: { $in: ids } });
     return await selected.exec();
   }
 

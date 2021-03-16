@@ -39,7 +39,7 @@ export class SubscriptionController {
     }
   }
 
-  @GrpcMethod('SubscriptionService', 'DeleteSubscription')
+  @GrpcMethod('SubscriptionService', 'UnFollow')
   async unFollow({ _id }: SubscriptionId, targetId: Types.ObjectId) {
     try {
       const tempdata = await this.subscriptionService.get(_id)

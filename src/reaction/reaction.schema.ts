@@ -16,6 +16,9 @@ export class Reaction extends Document {
   _createdAt: Date
   _updatedAt: Date
 
+  @Prop({ type: Types.ObjectId })
+  sourceId: Types.ObjectId
+
   @Prop({ type: Types.ObjectId , default: [] })
   upVote: Types.ObjectId[]
 

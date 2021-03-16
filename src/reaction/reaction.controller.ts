@@ -45,7 +45,7 @@ export class ReactionController {
     try {
       const target = await this.reactionService.gets({ ids: [args.targetId] })
       target[0].upVote.push(args.userId)
-      return await this.reactionService.update({ _id: args.targetId , upVote: target[0].upVote})
+      return await this.reactionService.update({ sourceId: args.targetId , upVote: target[0].upVote})
     } catch (e) {
       if (e instanceof NotFoundException) {
         throw new RpcException({
@@ -60,7 +60,7 @@ export class ReactionController {
     try {
       const target = await this.reactionService.gets({ ids: [args.targetId] })
       target[0].downVote.push(args.userId)
-      return await this.reactionService.update({ _id: args.targetId , downVote: target[0].downVote})
+      return await this.reactionService.update({ sourceId: args.targetId , downVote: target[0].downVote})
     } catch (e) {
       if (e instanceof NotFoundException) {
         throw new RpcException({

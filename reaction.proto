@@ -29,18 +29,20 @@ message GetReactionsArgs {
 }
 
 message CreateReactionArgs {
-  repeated string upVote = 1;
-  repeated string downVote = 2;
-  ReactionType reactionType = 3;
+  string sourceId = 1;
+  repeated string upVote = 2;
+  repeated string downVote = 3;
+  ReactionType reactionType = 4;
 }
 
 message Reaction {
   string _id = 1;
-  repeated string upVote = 2;
-  repeated string downVote = 3;
-  ReactionType reactionType = 4;
-  string _createdAt = 5;
-  string _updatedAt = 6;
+  string sourceId = 2;
+  repeated string upVote = 3;
+  repeated string downVote = 4;
+  ReactionType reactionType = 5;
+  string _createdAt = 6;
+  string _updatedAt = 7;
 }
 
 message Reactions {

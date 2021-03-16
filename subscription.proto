@@ -6,7 +6,7 @@ service SubscriptionService {
   rpc CreateSubscription (CreateSubscriptionArgs) returns (Subscription) {}
   rpc GetSubscriptions (GetSubscriptionsArgs) returns (Subscriptions) {}
   rpc UpdateSubscription (UpdateSubscriptionArgs) returns (Subscription) {}
-  rpc unFollow (unFollowArgs) returns (Subscription) {}
+  rpc UnFollow (unFollowArgs) returns (Subscription) {}
 }
 
 message unFollowArgs {
@@ -23,16 +23,18 @@ message GetSubscriptionsArgs {
 }
 
 message CreateSubscriptionArgs {
-  repeated string follower = 1;
-  repeated string following = 2;
+  string userId = 1;
+  repeated string follower = 2;
+  repeated string following = 3;
 }
 
 message Subscription {
   string _id = 1;
-  repeated string follower = 2;
-  repeated string following = 3;
-  string _createdAt = 4;
-  string _updatedAt = 5;
+  string userId = 2;
+  repeated string follower = 3;
+  repeated string following = 4;
+  string _createdAt = 5;
+  string _updatedAt = 6;
 }
 
 message Subscriptions {

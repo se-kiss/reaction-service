@@ -7,8 +7,8 @@ export class SubscriptionId {
 }
 
 export class CreateSubscriptionArgs {
+  userId: Types.ObjectId
   follower?: Types.ObjectId[]
-
   following?: Types.ObjectId[]
 }
 

@@ -11,6 +11,9 @@ export class Subscription extends Document {
   _createdAt: Date
   _updatedAt: Date
 
+  @Prop({ type: Types.ObjectId })
+  userId: Types.ObjectId
+
   @Prop({ type: Types.ObjectId , default: [] })
   follower: Types.ObjectId[]
 

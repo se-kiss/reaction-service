@@ -37,45 +37,45 @@ describe('SubscriptionService', () => {
     expect(service).toBeDefined();
   });
 
-  it('should be create Subscription', async () => {
-    const mockSubscription: CreateSubscriptionArgs = {
+  // it('should be create Subscription', async () => {
+  //   const mockSubscription: CreateSubscriptionArgs = {
 
-    }
-    const res = await service.create(mockSubscription)
-    expect(res).toMatchObject(mockSubscription)
-  })
+  //   }
+  //   const res = await service.create(mockSubscription)
+  //   expect(res).toMatchObject(mockSubscription)
+  // })
 
-  it('should get subscription', async () => {
-    const mockSubscription: CreateSubscriptionArgs = {
+  // it('should get subscription', async () => {
+  //   const mockSubscription: CreateSubscriptionArgs = {
 
-    }
-    const created = await service.create(mockSubscription)
-    const selected = await service.gets({ ids: created._id })
-    console.log(selected)
-  });
+  //   }
+  //   const created = await service.create(mockSubscription)
+  //   const selected = await service.gets({ ids: created._id })
+  //   console.log(selected)
+  // });
 
-  it('should update', async () => {
-    const subscription = await service.create({})
-    const args: UpdateSubscriptionArgs = {
-      _id: subscription._id,
-      follower: new Types.ObjectId,
-      following: new Types.ObjectId
-    }
-    const updated = await service.update(args)
-    console.log(updated)
-  })
+  // it('should update', async () => {
+  //   const subscription = await service.create({})
+  //   const args: UpdateSubscriptionArgs = {
+  //     _id: subscription._id,
+  //     follower: new Types.ObjectId,
+  //     following: new Types.ObjectId
+  //   }
+  //   const updated = await service.update(args)
+  //   console.log(updated)
+  // })
 
-  it('should unfollowupdate', async () => {
-    const subscription = await service.create({
-      follower: [new Types.ObjectId],
-      following: [new Types.ObjectId]
-    })
-    const _id = subscription._id
-    const data = [new Types.ObjectId]
-    const updated = await service.unfollowUpdate(_id,data)
-    console.log("This is last data")
-    console.log(subscription)
-    console.log(updated)
-  })
+  // it('should unfollowupdate', async () => {
+  //   const subscription = await service.create({
+  //     follower: [new Types.ObjectId],
+  //     following: [new Types.ObjectId]
+  //   })
+  //   const _id = subscription._id
+  //   const data = [new Types.ObjectId]
+  //   const updated = await service.unfollowUpdate(_id,data)
+  //   console.log("This is last data")
+  //   console.log(subscription)
+  //   console.log(updated)
+  // })
 
 });

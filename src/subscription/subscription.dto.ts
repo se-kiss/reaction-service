@@ -7,6 +7,7 @@ export class SubscriptionId {
 }
 
 export class CreateSubscriptionArgs {
+  @Transform(value => new Types.ObjectId(value))
   userId: Types.ObjectId
   follower?: Types.ObjectId[]
   following?: Types.ObjectId[]
@@ -24,12 +25,14 @@ export class GetSubscriptionsArgs {
 }
 
 export class UpdateSubscriptionArgs {
+  @Transform(value => new Types.ObjectId(value))
   userId: Types.ObjectId
   follower?: Types.ObjectId
   following?: Types.ObjectId
 }
 
 export class UnFollowArgs {
+  @Transform(value => new Types.ObjectId(value))
   userId: Types.ObjectId
   targetId: Types.ObjectId
 }

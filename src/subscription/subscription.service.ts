@@ -33,6 +33,7 @@ export class SubscriptionService implements OnModuleInit {
 
   async update(args: UpdateSubscriptionArgs): Promise<Subscription> {
     const selectData = await this.subscriptionModel.findOne({ userId: args.userId });
+
     if (args.follower && !selectData.follower.includes(args.follower)) {
       selectData.follower.push(args.follower)
     }

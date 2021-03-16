@@ -1,15 +1,19 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException ,OnModuleInit } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, Types } from 'mongoose';
 import { CreateNotificationArgs, GetNotificationsArgs } from './notification.dto';
 import { Notification } from './notification.schema';
 
 @Injectable()
-export class NotificationService {
+export class NotificationService implements OnModuleInit {
   constructor(
     @InjectModel(Notification.name)
     private readonly notificationModel: Model<Notification>,
   ) {}
+
+  async onModuleInit() {
+    this.notificationModel.syncIndexes()
+  }
 
   async create(args: CreateNotificationArgs): Promise<Notification> {
     const created = new this.notificationModel(args)
@@ -22,8 +26,8 @@ export class NotificationService {
     return await selected.exec();
   }
 
-  async delete( _id: Types.ObjectId ): Promise<Notification> {
-    const deleted = this.notificationModel.findByIdAndDelete(_id).exec()
+  async delete( userId: Types.ObjectId ): Promise<Notification> {
+    const deleted = this.notificationModel.findOneAndDelete({userId}).exec()
     if (!deleted) throw new NotFoundException()
     return deleted
   }

@@ -22,12 +22,12 @@ export class NotificationService implements OnModuleInit {
 
   async gets({ ids }: GetNotificationsArgs): Promise<Notification[]> {
     const selected = this.notificationModel.find({});
-    ids && selected.find({ userId: { $in: ids } });
+    ids && selected.find({ ownerId: { $in: ids } });
     return await selected.exec();
   }
 
-  async delete( userId: Types.ObjectId ): Promise<Notification> {
-    const deleted = this.notificationModel.findOneAndDelete({userId}).exec()
+  async delete( ownerId: Types.ObjectId ): Promise<Notification> {
+    const deleted = this.notificationModel.findOneAndDelete({ownerId}).exec()
     if (!deleted) throw new NotFoundException()
     return deleted
   }

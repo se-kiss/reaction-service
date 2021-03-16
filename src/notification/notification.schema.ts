@@ -16,8 +16,11 @@ export class Notification extends Document {
   _createdAt: Date
   _updatedAt: Date
 
-  @Prop({ type: Types.ObjectId, required: true , unique: true})
-  userId: Types.ObjectId
+  @Prop({ type: Types.ObjectId, required: true, unique: true})
+  ownerId: Types.ObjectId
+
+  @Prop({ type: Types.ObjectId, required: true })
+  followingUser: Types.ObjectId[]
 
   @Prop({ type: NotificationType, required: true })
   notificationType: NotificationType

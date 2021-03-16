@@ -8,8 +8,15 @@ export class NotificationId {
 }
 
 export class CreateNotificationArgs implements Partial<Notification> {
+
   @Transform(value => new Types.ObjectId(value))
-  userId: Types.ObjectId
+  ownerId: Types.ObjectId
+
+  @Transform((values: string[]) =>
+    values.map(value => new Types.ObjectId(value)),
+  )
+  followingUser: Types.ObjectId[]
+  
   notificationType: NotificationType
 }
 

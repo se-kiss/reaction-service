@@ -1,10 +1,9 @@
 import { Controller, NotFoundException } from '@nestjs/common';
 import { GrpcMethod, RpcException } from '@nestjs/microservices';
-import { CreateSubscriptionArgs, GetSubscriptionsArgs, SubscriptionId, UpdateSubscriptionArgs} from './subscription.dto';
+import { CreateSubscriptionArgs, GetSubscriptionsArgs, UnFollowArgs, UpdateSubscriptionArgs} from './subscription.dto';
 import { SubscriptionService } from './subscription.service';
 import { status } from 'grpc';
 import { Subscription } from './subscription.schema';
-import { Types } from 'mongoose';
 
 @Controller('subscription')
 export class SubscriptionController {
@@ -40,17 +39,16 @@ export class SubscriptionController {
   }
 
   @GrpcMethod('SubscriptionService', 'UnFollow')
-  async unFollow({ _id }: SubscriptionId, targetId: Types.ObjectId) {
+  async unFollow(args: UnFollowArgs) {
     try {
-      const tempdata = await this.subscriptionService.get(_id)
-      tempdata.following = tempdata.following.filter(value => value.toHexString() !== targetId.toHexString())
-      return await this.subscriptionService.unfollowUpdate(_id,tempdata.following)
+      const tempdata = await this.subscriptionService.get(args.userId)
+      return await this.subscriptionService.unfollowUpdate(args)
       
     } catch (e) {
       if (e instanceof NotFoundException) {
         throw new RpcException({
           code: status.NOT_FOUND,
-          message: _id.toHexString(),
+          message: args.userId.toHexString(),
         });
       }
     }

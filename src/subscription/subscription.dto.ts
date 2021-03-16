@@ -24,7 +24,12 @@ export class GetSubscriptionsArgs {
 }
 
 export class UpdateSubscriptionArgs {
-  _id: Types.ObjectId
+  userId: Types.ObjectId
   follower?: Types.ObjectId
   following?: Types.ObjectId
+}
+
+export class UnFollowArgs {
+  userId: Types.ObjectId
+  targetId: Types.ObjectId
 }

@@ -11,7 +11,7 @@ export class Subscription extends Document {
   _createdAt: Date
   _updatedAt: Date
 
-  @Prop({ type: Types.ObjectId })
+  @Prop({ type: Types.ObjectId, unique: true })
   userId: Types.ObjectId
 
   @Prop({ type: Types.ObjectId , default: [] })

@@ -14,17 +14,12 @@ spec:
     spec:
       containers:
       - name: kiss-reaction
-        image: registry.gitlab.com/nestz671/kiss-container-registries/reaction:0.0.12
+        image: registry.gitlab.com/nestz671/kiss-container-registries/reaction:0.0.14
         ports:
         - containerPort: 5000
         env:
-          - name: MONGODB_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                name: mongodb
-                key: mongodb-root-password
           - name: MONGODB_URL
-            value: mongodb://root:$(MONGODB_PASSWORD)@mongodb:27017/kiss-reaction?authSource=admin
+            value: mongodb+srv://root:Tee0869368594@se.ofqr9.mongodb.net/test?authSource=admin
         resources:
           requests:
             cpu: 10m

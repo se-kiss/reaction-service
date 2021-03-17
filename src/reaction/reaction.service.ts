@@ -16,10 +16,11 @@ export class ReactionService {
     return await created.save()
   }
 
-  async gets({ ids }: GetReactionsArgs): Promise<Reaction[]> {
-    const selected = this.reactionModel.find({});
-    ids && selected.find({ _id: { $in: ids } });
-    return await selected.exec();
+  async gets({ ids, filter }: GetReactionsArgs): Promise<Reaction[]> {
+    const reaction = this.reactionModel.find({});
+    if (filter ) reaction.find({ reactionType: filter.reactionType });
+    ids && reaction.find({ _id: { $in: ids } });
+    return await reaction.exec();
   }
 
   async update(args: UpdateReactionArgs): Promise<Reaction> {

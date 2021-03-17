@@ -24,9 +24,15 @@ message VoteArgs {
   string userId = 2;
 }
 
+message GetReactionsFilter {
+  ReactionType reactionType = 1;
+}
+
 message GetReactionsArgs {
   repeated string ids = 1;
+  optional GetReactionsFilter filter = 2;
 }
+
 
 message CreateReactionArgs {
   string sourceId = 1;

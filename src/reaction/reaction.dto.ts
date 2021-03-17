@@ -1,10 +1,16 @@
-import { Transform } from 'class-transformer';
-import { IsArray, IsOptional } from 'class-validator';
+import { Transform, Type } from 'class-transformer';
+import { IsArray, IsEnum, IsOptional, ValidateNested } from 'class-validator';
 import { Types } from 'mongoose';
 import { Reaction, ReactionType } from './reaction.schema';
 
 export class ReactionId {
   _id: Types.ObjectId
+}
+
+export class GetReactionsFilter {
+  @IsOptional()
+  @IsEnum(ReactionType)
+  reactionType?: ReactionType
 }
 
 export class CreateReactionArgs implements Partial<Reaction> {
@@ -30,6 +36,11 @@ export class CreateReactionArgs implements Partial<Reaction> {
 }
 
 export class GetReactionsArgs {
+  @IsOptional()
+  @ValidateNested()
+  @Type(() => GetReactionsFilter)
+  filter?: GetReactionsFilter;
+
   @IsOptional()
   @IsArray()
   @Transform((values: string[]) => {

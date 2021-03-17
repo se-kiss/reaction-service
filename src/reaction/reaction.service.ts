@@ -18,13 +18,13 @@ export class ReactionService {
 
   async gets({ ids }: GetReactionsArgs): Promise<Reaction[]> {
     const selected = this.reactionModel.find({});
-    ids && selected.find({ sourceId: { $in: ids } });
+    ids && selected.find({ _id: { $in: ids } });
     return await selected.exec();
   }
 
   async update(args: UpdateReactionArgs): Promise<Reaction> {
-    const updated = await this.reactionModel.findOneAndUpdate(
-      {sourceId: args.sourceId},
+    const updated = await this.reactionModel.findByIdAndUpdate(
+    args._id,
       {
         ...args,
         _updatedAt: new Date(),

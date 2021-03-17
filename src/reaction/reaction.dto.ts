@@ -12,14 +12,18 @@ export class CreateReactionArgs implements Partial<Reaction> {
   @Transform(value => new Types.ObjectId(value))
   sourceId: Types.ObjectId
 
-  @Transform((values: string[]) =>
-    values.map(value => new Types.ObjectId(value)),
-  )
+  @Transform((values: string[]) => {
+    return values.length === 0
+      ? undefined
+      : values.map(value => new Types.ObjectId(value));
+  })
   upVote?: Types.ObjectId[]
 
-  @Transform((values: string[]) =>
-    values.map(value => new Types.ObjectId(value)),
-  )
+  @Transform((values: string[]) => {
+    return values.length === 0
+      ? undefined
+      : values.map(value => new Types.ObjectId(value));
+  })
   downVote?: Types.ObjectId[]
 
   reactionType: ReactionType
@@ -37,12 +41,27 @@ export class GetReactionsArgs {
 }
 
 export class UpdateReactionArgs implements Partial<CreateReactionArgs> {
-  sourceId: Types.ObjectId
+  _id: Types.ObjectId
+
+  @Transform((values: string[]) => {
+    return values.length === 0
+      ? undefined
+      : values.map(value => new Types.ObjectId(value));
+  })
   upVote?: Types.ObjectId[]
+
+  @Transform((values: string[]) => {
+    return values.length === 0
+      ? undefined
+      : values.map(value => new Types.ObjectId(value));
+  })
   downVote?: Types.ObjectId[]
 }
 
 export class VoteArgs {
+  @Transform(value => new Types.ObjectId(value))
   targetId: Types.ObjectId
+  
+  @Transform(value => new Types.ObjectId(value))
   userId: Types.ObjectId
 }

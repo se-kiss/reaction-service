@@ -9,7 +9,15 @@ export class SubscriptionId {
 export class CreateSubscriptionArgs {
   @Transform(value => new Types.ObjectId(value))
   userId: Types.ObjectId
+
+  @Transform((values: string[]) =>
+    values.map(value => new Types.ObjectId(value)),
+  )
   follower?: Types.ObjectId[]
+
+  @Transform((values: string[]) =>
+    values.map(value => new Types.ObjectId(value)),
+  )
   following?: Types.ObjectId[]
 }
 
@@ -27,7 +35,15 @@ export class GetSubscriptionsArgs {
 export class UpdateSubscriptionArgs {
   @Transform(value => new Types.ObjectId(value))
   userId: Types.ObjectId
+
+  @Transform((values: string[]) =>
+    values.map(value => new Types.ObjectId(value)),
+  )
   follower?: Types.ObjectId
+
+  @Transform((values: string[]) =>
+    values.map(value => new Types.ObjectId(value)),
+  )
   following?: Types.ObjectId
 }
 
